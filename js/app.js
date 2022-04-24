@@ -38,7 +38,8 @@ employeeObject.prototype = function () {
 }
 
 employeeObject.prototype.render = function () {
-    console.log(`employee name is ${this.name}, the net salary is ${netSalary}`);
+    console.log(this.name);
+    document.write(`<h1> employee name is ${this.name}, the net salary is ${netSalary} </h1>`)
 }
 let ghaziSamer = new employeeObject("1000", "Ghazi Samer", "Administration", "senior");
 let lanaAli = new employeeObject("1001", "Lana Ali", "Administration", "senior");
@@ -48,6 +49,10 @@ let omarZaid = new employeeObject("1004", "Omar Zaid", "Administration", "senior
 let ranaSaleh = new employeeObject("1005", "Rana Saleh", "Administration", "senior");
 let hadiAhmad = new employeeObject("1006", "Hadi Ahmad", "Administration", "senior");
 
-
-    
-    
+ghaziSamer.log(employee);
+lanaAli.render();
+tamaraAyoub.render();
+safiWalid.render();
+omarZaid.render();
+ranaSaleh.render();
+hadiAhmad.render();
