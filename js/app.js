@@ -67,10 +67,13 @@ let hadiAhmad = new EmployeeObject("1006", "Hadi Ahmad", "Administration", 'Mid-
 //ranaSaleh.render();
 //hadiAhmad.render();
 
-
-for (let i = 0; i < employee.length; i++) {
-    employee[i].render();
+function renderAll(){
+    for (let i = 0; i < employee.length; i++) {
+        employee[i].render();
+    }
 }
+
+
 
 EmployeeObject.prototype.id = function () {
     return Math.floor(1000 + Math.random() * 9000);
@@ -88,4 +91,29 @@ function handleSubmit(event) {
     let salary = EmployeeObject.prototype.salary();
     let newEmployee = new EmployeeObject(id, name, department, level, image,salary);
     newEmployee.render();
+    saveData(newEmployee);
 }
+
+function saveData(data) {
+  let dataAsString;
+  let dataObj = JSON.parse(localStorage.getItem('employeeItem'));
+  if (dataObj != null) {
+    dataObj.push(data);
+    dataAsString = JSON.stringify(dataObj);
+  } else {
+    dataAsString = JSON.stringify([data]);
+
+  } localStorage.setItem('employeeItem', dataAsString);
+}
+
+function getData() {
+  let retrievedData = localStorage.getItem('employeeItem');
+  let arrayData = JSON.parse(retrievedData);
+  if (arrayData != null) {
+    for (let i = 0; i < arrayData.length; i++) {
+      new EmployeeObject(arrayData[i].id, arrayData[i].name, arrayData[i].department, arrayData[i].level, arrayData[i].image, arrayData[i].salary);
+    }
+  }
+  renderAll();
+}
+getData();
