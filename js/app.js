@@ -1,60 +1,63 @@
 'use strict';
 
 let employee = [];
+let newCard = document.getElementById('form');
+let conntainer = document.getElementById('cardDiv');
+let myCard = document.getElementById("oldCard");
 
-function employeeObject(employeeId, fullName, department, level, imageUrl, salary) {
+function EmployeeObject(employeeId, fullName, department, level, imageUrl, salary) {
     this.id = employeeId;
     this.name = fullName;
     this.department = department;
     this.level = level;
     this.imageUrl = imageUrl;
     this.salary = salary;
-
     employee.push(this);
 }
-employeeObject.prototype = function () {
-    if (employeeObject.this.level.toLowerCase() === 'junior'){
+EmployeeObject.prototype.salary = function () {
+    let netSalary = 0
+    if (EmployeeObject.this.level.toLowerCase() === 'junior'){
         var min = 500;
         var max = 1000;
-        function getRandomArbitrary(min, max) {
-            return (Math.random() * (max - min) + min) ;
-          }
-        }
-    if (employeeObject.this.level.toLowerCase() === 'mid-senior'){
+        netSalary = (Math.floor(Math.random() * (max - min + 1)) + min);
+    }
+    else if (EmployeeObject.this.level.toLowerCase() === 'mid-senior'){
         var min = 1000;
         var max = 1500;
-        function getRandomArbitrary(min, max) {
-            return let  (Math.random() * (max - min) + min) ;
-          }
+        netSalary = (Math.floor(Math.random() * (max - min + 1)) + min);
     }
-    if (employeeObject.this.level.toLowerCase() === 'senior'){
+    else (EmployeeObject.this.level.toLowerCase() === 'senior'){
         var min = 1500;
         var max = 2000;
-        function getRandomArbitrary(min, max) {
-            return (Math.random() * (max - min) + min) ;
-          }
+        netSalary = (Math.floor(Math.random() * (max - min + 1)) + min);
     }
-    let netSalary = (Math.random() * (max - min) + min) * 0.075;
+    return `${net - (net * (7.5 / 100))}`
+    
 }
 
-employeeObject.prototype.render = function () {
+EmployeeObject.prototype.render = function () {
     //console.log(this.name);
     //document.write(`<h1> employee name is ${this.name}, the net salary is ${netSalary} </h1>`);
-    let conntainer =document.createElement("div")
-    myCard.appendChild(conntainer)
+    let conntainer =document.createElement("div");
+    conntainer.classList = ('cardDiv');
+    myCard.appendChild(conntainer);
+    let imageEmployee = document.createElement('img');
+    imageEmployee.classList = ('card-img-top');
+    imageEmployee.src = this.image;
+    imageEmployee.alt = 'profilePic';
+    card.appendChild(imageEmployee);
     let info = document.createElement("p");
     info.textContent = `Name:${this.name} -ID: ${this.id }  Department:${this.department} -Level:${this.level} -Salary:${this.salary} -Net Salary:${this.netSalary}`;
     conntainer.appendChild(info);
-    info.style.width="15rem";
 }
-let ghaziSamer = new employeeObject("1000", "Ghazi Samer", "Administration", "senior");
-let lanaAli = new employeeObject("1001", "Lana Ali", "Administration", "senior");
-let tamaraAyoub = new employeeObject("1002", "Tamara Ayoub", "Administration", "senior");
-let safiWalid = new employeeObject("1003", "Safi Walid", "Administration", "senior");
-let omarZaid = new employeeObject("1004", "Omar Zaid", "Administration", "senior");
-let ranaSaleh = new employeeObject("1005", "Rana Saleh", "Administration", "senior");
-let hadiAhmad = new employeeObject("1006", "Hadi Ahmad", "Administration", "senior");
-let myCard = document.getElementById("oldCard");
+let ghaziSamer = new EmployeeObject("1000", "Ghazi Samer", "Administration", "senior", './images/maleicon.png', '1660');
+let lanaAli = new EmployeeObject("1001", "Lana Ali", "Administration", "senior", './images/femaleicon.png', '1600');
+let tamaraAyoub = new EmployeeObject("1002", "Tamara Ayoub", "Administration", "senior", './images/femaleicon.png', '1640');
+let safiWalid = new EmployeeObject("1003", "Safi Walid", "Administration", 'Mid-Senior', './images/maleicon.png', '1420');
+let omarZaid = new EmployeeObject("1004", "Omar Zaid", "Administration", "senior", './images/maleicon.png', '1700');
+let ranaSaleh = new EmployeeObject("1005", "Rana Saleh", "Administration", "junior", './images/femaleicon.png', '800');
+let hadiAhmad = new EmployeeObject("1006", "Hadi Ahmad", "Administration", 'Mid-Senior', './images/maleicon.png', '1385');
+
 
 //ghaziSamer.log(employee);
 //lanaAli.render();
@@ -68,16 +71,21 @@ let myCard = document.getElementById("oldCard");
 for (let i = 0; i < employee.length; i++) {
     employee[i].render();
 }
+
+EmployeeObject.prototype.id = function () {
+    return Math.floor(1000 + Math.random() * 9000);
+}
+
 newCard.addEventListener("submit", handleSubmit);
 
 function handleSubmit(event) {
-    for (let j = 0; j < allEmployees.length; j++) {
-        var employeeId = Math.floor(1006 + j);
-    }
     event.preventDefault();
+    let id = EmployeeObject.prototype.id();
     let name = event.target.name.value;
     let department = event.target.department.value;
     let level = event.target.level.value;
-    let newEmployee = new employeeObject(employeeId, name, department, level);
+    let image = event.target.image.value;
+    let salary = EmployeeObject.prototype.salary();
+    let newEmployee = new EmployeeObject(id, name, department, level, image,salary);
     newEmployee.render();
 }

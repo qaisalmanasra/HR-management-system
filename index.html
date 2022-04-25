@@ -11,7 +11,56 @@
         <h1><a href="./index.html">Home </a> &nbsp &nbsp &nbsp &nbsp &nbsp <a href="./accounting.html">Accounting </a> </h1>
     </header>
     <main>
-
+        <section id="oldCard">
+            <!-- card section is here !! -->
+            <div class="cardDiv" id="cardDiv"></div>
+          </section>
+          <form action="" class="form" id="form">
+            <div>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Full Name"
+              />
+              <label>Full Name</label>
+            </div>
+            <div>
+              <select
+                id="department"
+                name="department"
+              >
+                <option selected>Choose a Department</option>
+                <option value="Administration">Administration</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Development">Development</option>
+                <option value="Finance">Finance</option>
+              </select>
+              <label for="floatingSelect">Departments</label>
+            </div>
+            <div>
+              <select
+                id="level"
+                name="level"
+              >
+                <option selected>Choose a Level</option>
+                <option value="Junior">Junior</option>
+                <option value="Mid-Senior">Mid-Senior</option>
+                                                     </select>
+              <label for="floatingSelect">Levels</label>
+            </div>
+            <div>
+              <label>Insert an image url</label>
+              <input type="text" id="image" name="image" />
+            </div>
+            <div>
+              <input
+                id="btn"
+                type="submit"
+                value="Add Employee"
+              />
+            </div>
+          </form>
     </main>
     <footer>
         <p>
